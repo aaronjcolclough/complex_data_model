@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <OpenApiGenerateDocumentsOnBuild Condition=" '$(OpenApiGenerateDocumentsOnBuild)' == '' ">false</OpenApiGenerateDocumentsOnBuild>
+  </PropertyGroup>
+</Project>

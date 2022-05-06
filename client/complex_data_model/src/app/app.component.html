@@ -1,0 +1,16 @@
+<section class="mat-typography mat-app-background app-frame"
+         [ngClass]="themer.isLight ? 'app-light' : 'app-dark'">
+  <ng-container *ngIf="banner.config$ | async as config else loading">
+    <banner [label]="config.label"
+            [background]="config.background"
+            [color]="config.color"></banner>
+    <app-bar module="Complex Data Model"></app-bar>
+    <section class="app-container">
+      <router-outlet></router-outlet>
+    </section>
+  </ng-container>
+  <ng-template #loading>
+    <mat-progress-bar mode="indeterminate"
+                      color="accent"></mat-progress-bar>
+  </ng-template>
+</section>
