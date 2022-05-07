@@ -13,7 +13,6 @@ public class Course
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
     public DateTime StartDate { get; set; }
 
-
     [Range(0,5)]
     public int Credits { get; set; }
 

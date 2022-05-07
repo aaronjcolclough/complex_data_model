@@ -28,15 +28,6 @@ public class AppDbContext : DbContext
             .HasKey(x => new { x.CourseId, x.StudentId });
 
         #endregion
-        #region One → One
-
-        modelBuilder
-            .Entity<Department>()
-            .HasOne(x => x.DepartmentHead)
-            .WithOne()
-            .OnDelete(DeleteBehavior.Restrict);
-
-        #endregion
         #region One → Many
 
         modelBuilder
@@ -61,21 +52,13 @@ public class AppDbContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         #endregion
-        #region Cascade Delete
+        #region Discriminators
 
         modelBuilder
-            .Entity<Department>()
-            .HasOne(x => x.DepartmentHead)
-            .WithMany()
-            .HasForeignKey(x => x.DepartmentHeadId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<Course>()
-            .HasOne(x => x.Department)
-            .WithMany(x => x.Courses)
-            .HasForeignKey(x => x.DepartmentId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .Entity<Person>()
+            .HasDiscriminator(person => person.Type)
+            .HasValue<Student>("student")
+            .HasValue<Instructor>("instructor");
 
         #endregion
 

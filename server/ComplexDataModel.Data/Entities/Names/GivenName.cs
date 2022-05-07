@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ComplexDataModel.Data.Entities.Names;
 
 public class GivenName
 {
-    public int Id { get; set; }
+    [Key]
     public string Value { get; set; }
 
     public IEnumerable<Person> FirstNames { get; set; }
