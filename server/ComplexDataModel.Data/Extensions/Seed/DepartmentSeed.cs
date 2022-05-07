@@ -1,13 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 
 using ComplexDataModel.Data.Entities;
-using ComplexDataModel.Data.Entities.Names;
 
 namespace ComplexDataModel.Data.Extensions.Seed;
 
 public static class DepartmentSeed
 {
-    public static async Task<List<Department>> SeedDepartments(this AppDbContext db, List<Instructor> instructors, List<Surname> surnames)
+    public static async Task<List<Department>> SeedDepartments(this AppDbContext db)
     {
         if (await db.Departments.AnyAsync())
         {
@@ -19,14 +18,10 @@ public static class DepartmentSeed
         {
             var departments = new List<Department>
             {
-                new Department
-                    {
-                        // DepartmentHeadId = instructors.Single(x =>
-                        //     x.LastNameId == surnames.Find()
-                        //     ).Id,
-                        // LastNameId = surnames.Single(x => x.Value == "Abercrombie").Id,
-                        // HireDate = DateTime.Parse("2007-09-01")
-                    },
+                new Department { Name = "English",     Budget = 350000 },
+                new Department { Name = "Mathematics", Budget = 100000 },
+                new Department { Name = "Engineering", Budget = 350000 },
+                new Department { Name = "Economics",   Budget = 100000 }
             };
 
             await db.Departments.AddRangeAsync(departments);

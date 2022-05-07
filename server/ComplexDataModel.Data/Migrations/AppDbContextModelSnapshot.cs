@@ -24,32 +24,19 @@ namespace ComplexDataModel.Data.Migrations
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Course", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("CourseNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DepartmentName")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DepartmentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CourseNumber", "DepartmentName");
 
                     b.HasIndex("DepartmentName");
 
@@ -77,14 +64,43 @@ namespace ComplexDataModel.Data.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Grade")
+                    b.Property<int>("Grade")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseId", "StudentId");
+                    b.HasKey("CourseId", "StudentId", "Grade");
 
                     b.HasIndex("StudentId");
 
                     b.ToTable("Enrollment", (string)null);
+                });
+
+            modelBuilder.Entity("ComplexDataModel.Data.Entities.InstructedCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CourseNumber")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DepartmentName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstructorId");
+
+                    b.HasIndex("CourseNumber", "DepartmentName");
+
+                    b.ToTable("InstructedCourse", (string)null);
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Names.GivenName", b =>
@@ -131,13 +147,13 @@ namespace ComplexDataModel.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("FirstNameId")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("LastNameId")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MiddleNameId")
+                    b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Type")
@@ -146,30 +162,15 @@ namespace ComplexDataModel.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FirstNameId");
+                    b.HasIndex("FirstName");
 
-                    b.HasIndex("LastNameId");
+                    b.HasIndex("LastName");
 
-                    b.HasIndex("MiddleNameId");
+                    b.HasIndex("MiddleName");
 
                     b.ToTable("Person", (string)null);
 
                     b.HasDiscriminator<string>("Type").HasValue("Person");
-                });
-
-            modelBuilder.Entity("CourseInstructor", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InstructorsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CoursesId", "InstructorsId");
-
-                    b.HasIndex("InstructorsId");
-
-                    b.ToTable("CourseInstructor", (string)null);
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Instructor", b =>
@@ -202,7 +203,7 @@ namespace ComplexDataModel.Data.Migrations
                     b.HasOne("ComplexDataModel.Data.Entities.Department", "Department")
                         .WithMany("Courses")
                         .HasForeignKey("DepartmentName")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Department");
@@ -210,10 +211,10 @@ namespace ComplexDataModel.Data.Migrations
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Enrollment", b =>
                 {
-                    b.HasOne("ComplexDataModel.Data.Entities.Course", "Course")
-                        .WithMany("Enrollments")
+                    b.HasOne("ComplexDataModel.Data.Entities.InstructedCourse", "Course")
+                        .WithMany("EnrolledStudents")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("ComplexDataModel.Data.Entities.Student", "Student")
@@ -225,6 +226,23 @@ namespace ComplexDataModel.Data.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("ComplexDataModel.Data.Entities.InstructedCourse", b =>
+                {
+                    b.HasOne("ComplexDataModel.Data.Entities.Instructor", "Instructor")
+                        .WithMany("Courses")
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ComplexDataModel.Data.Entities.Course", "Course")
+                        .WithMany("Instructions")
+                        .HasForeignKey("CourseNumber", "DepartmentName");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Office", b =>
@@ -240,55 +258,41 @@ namespace ComplexDataModel.Data.Migrations
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Person", b =>
                 {
-                    b.HasOne("ComplexDataModel.Data.Entities.Names.GivenName", "FirstName")
+                    b.HasOne("ComplexDataModel.Data.Entities.Names.GivenName", "FirstNameNav")
                         .WithMany("FirstNames")
-                        .HasForeignKey("FirstNameId")
+                        .HasForeignKey("FirstName")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ComplexDataModel.Data.Entities.Names.Surname", "LastName")
+                    b.HasOne("ComplexDataModel.Data.Entities.Names.Surname", "LastNameNav")
                         .WithMany("LastNames")
-                        .HasForeignKey("LastNameId")
+                        .HasForeignKey("LastName")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("ComplexDataModel.Data.Entities.Names.GivenName", "MiddleName")
+                    b.HasOne("ComplexDataModel.Data.Entities.Names.GivenName", "MiddleNameNav")
                         .WithMany("MiddleNames")
-                        .HasForeignKey("MiddleNameId")
+                        .HasForeignKey("MiddleName")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("FirstName");
+                    b.Navigation("FirstNameNav");
 
-                    b.Navigation("LastName");
+                    b.Navigation("LastNameNav");
 
-                    b.Navigation("MiddleName");
-                });
-
-            modelBuilder.Entity("CourseInstructor", b =>
-                {
-                    b.HasOne("ComplexDataModel.Data.Entities.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ComplexDataModel.Data.Entities.Instructor", null)
-                        .WithMany()
-                        .HasForeignKey("InstructorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("MiddleNameNav");
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Instructor", b =>
                 {
                     b.HasOne("ComplexDataModel.Data.Entities.Department", "Department")
                         .WithMany("Instructors")
-                        .HasForeignKey("DepartmentName");
+                        .HasForeignKey("DepartmentName")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Department");
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Course", b =>
                 {
-                    b.Navigation("Enrollments");
+                    b.Navigation("Instructions");
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Department", b =>
@@ -296,6 +300,11 @@ namespace ComplexDataModel.Data.Migrations
                     b.Navigation("Courses");
 
                     b.Navigation("Instructors");
+                });
+
+            modelBuilder.Entity("ComplexDataModel.Data.Entities.InstructedCourse", b =>
+                {
+                    b.Navigation("EnrolledStudents");
                 });
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Names.GivenName", b =>
@@ -312,6 +321,8 @@ namespace ComplexDataModel.Data.Migrations
 
             modelBuilder.Entity("ComplexDataModel.Data.Entities.Instructor", b =>
                 {
+                    b.Navigation("Courses");
+
                     b.Navigation("Office");
                 });
 

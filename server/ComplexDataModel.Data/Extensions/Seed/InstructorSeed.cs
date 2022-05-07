@@ -23,33 +23,38 @@ public static class InstructorSeed
             {
                 new Instructor
                     {
-                        FirstNameId = givenNames.Single(x => x.Value == "Kim").Value,
-                        LastNameId = surnames.Single(x => x.Value == "Abercrombie").Value,
-                        HireDate = DateTime.Parse("2007-09-01")
+                        FirstName = givenNames.Single(x => x.Value == "Kim").Value,
+                        LastName = surnames.Single(x => x.Value == "Abercrombie").Value,
+                        HireDate = DateTime.Parse("2007-09-01"),
+                        DepartmentName = "English"
                     },
                 new Instructor
                     {
-                        FirstNameId = givenNames.Single(x => x.Value == "Fadi").Value,
-                        LastNameId = surnames.Single(x => x.Value == "Fakhouri").Value,
-                        HireDate = DateTime.Parse("2007-09-01")
+                        FirstName = givenNames.Single(x => x.Value == "Fadi").Value,
+                        LastName = surnames.Single(x => x.Value == "Fakhouri").Value,
+                        HireDate = DateTime.Parse("2007-09-01"),
+                        DepartmentName = "Mathematics"
                     },
                 new Instructor
                     {
-                        FirstNameId = givenNames.Single(x => x.Value == "Roger").Value,
-                        LastNameId = surnames.Single(x => x.Value == "Harui").Value,
-                        HireDate = DateTime.Parse("2007-09-01")
+                        FirstName = givenNames.Single(x => x.Value == "Roger").Value,
+                        LastName = surnames.Single(x => x.Value == "Harui").Value,
+                        HireDate = DateTime.Parse("2007-09-01"),
+                        DepartmentName = "Engineering"
                     },
                 new Instructor
                     {
-                        FirstNameId = givenNames.Single(x => x.Value == "Candace").Value,
-                        LastNameId = surnames.Single(x => x.Value == "Kapoor").Value,
-                        HireDate = DateTime.Parse("2007-09-01")
+                        FirstName = givenNames.Single(x => x.Value == "Candace").Value,
+                        LastName = surnames.Single(x => x.Value == "Kapoor").Value,
+                        HireDate = DateTime.Parse("2007-09-01"),
+                        DepartmentName = "Economics"
                     },
                 new Instructor
                     {
-                        FirstNameId = givenNames.Single(x => x.Value == "Roger").Value,
-                        LastNameId = surnames.Single(x => x.Value == "Zheng").Value,
-                        HireDate = DateTime.Parse("2012-09-01")
+                        FirstName = givenNames.Single(x => x.Value == "Roger").Value,
+                        LastName = surnames.Single(x => x.Value == "Zheng").Value,
+                        HireDate = DateTime.Parse("2012-09-01"),
+                        DepartmentName = "Economics"
                     },
             };
 

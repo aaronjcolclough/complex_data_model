@@ -4,7 +4,7 @@ namespace ComplexDataModel.Data.Entities;
 
 public enum Grade
 {
-    A, B, C, D, F
+    A, B, C, D, F, I
 }
 
 public class Enrollment
@@ -15,6 +15,6 @@ public class Enrollment
     [DisplayFormat(NullDisplayText = "No Grade")]
     public Grade? Grade { get; set; }
 
-    public Course Course { get; set; }
+    public InstructedCourse Course { get; set; }
     public Student Student { get; set; }
 }

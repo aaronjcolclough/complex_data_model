@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<Department> Departments { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
     public DbSet<GivenName> GivenNames { get; set; }
+    public DbSet<InstructedCourse> InstructedCourses { get; set; }
     public DbSet<Instructor> Instructors { get; set; }
     public DbSet<Office> Offices { get; set; }
     public DbSet<Person> People { get; set; }
@@ -24,31 +25,71 @@ public class AppDbContext : DbContext
         #region Composite Primary Keys
 
         modelBuilder
+            .Entity<Course>()
+            .HasKey(c => new { c.CourseNumber, c.DepartmentName });
+
+        modelBuilder
             .Entity<Enrollment>()
-            .HasKey(x => new { x.CourseId, x.StudentId });
+            .HasKey(x => new { x.CourseId, x.StudentId, x.Grade });
+
+        #endregion
+        #region Composite Foreign Keys
+
+        modelBuilder
+            .Entity<InstructedCourse>()
+            .HasOne(x => x.Course)
+            .WithMany(x => x.Instructions)
+            .HasForeignKey(x => new { x.CourseNumber, x.DepartmentName });
 
         #endregion
         #region One → Many
 
         modelBuilder
+            .Entity<Course>()
+            .HasOne(x => x.Department)
+            .WithMany(x => x.Courses)
+            .HasForeignKey(x => x.DepartmentName)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder
+            .Entity<Enrollment>()
+            .HasOne(x => x.Course)
+            .WithMany(x => x.EnrolledStudents)
+            .HasForeignKey(x => x.CourseId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder
+            .Entity<InstructedCourse>()
+            .HasOne(x => x.Instructor)
+            .WithMany(x => x.Courses)
+            .HasForeignKey(x => x.InstructorId);
+
+        modelBuilder
+            .Entity<Instructor>()
+            .HasOne(x => x.Department)
+            .WithMany(x => x.Instructors)
+            .HasForeignKey(x => x.DepartmentName)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder
             .Entity<Person>()
-            .HasOne(x => x.FirstName)
+            .HasOne(x => x.FirstNameNav)
             .WithMany(x => x.FirstNames)
-            .HasForeignKey(x => x.FirstNameId)
+            .HasForeignKey(x => x.FirstName)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder
             .Entity<Person>()
-            .HasOne(x => x.MiddleName)
+            .HasOne(x => x.MiddleNameNav)
             .WithMany(x => x.MiddleNames)
-            .HasForeignKey(x => x.MiddleNameId)
+            .HasForeignKey(x => x.MiddleName)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder
             .Entity<Person>()
-            .HasOne(x => x.LastName)
+            .HasOne(x => x.LastNameNav)
             .WithMany(x => x.LastNames)
-            .HasForeignKey(x => x.LastNameId)
+            .HasForeignKey(x => x.LastName)
             .OnDelete(DeleteBehavior.Restrict);
 
         #endregion
