@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
+using ComplexDataModel.Data.Configuration;
 using ComplexDataModel.Data.Entities;
 using ComplexDataModel.Data.Entities.Names;
 
@@ -20,98 +21,21 @@ public class AppDbContext : DbContext
     public DbSet<Student> Students { get; set; }
     public DbSet<Surname> Surnames { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder mb)
     {
-        #region Composite Primary Keys
+        mb.ConfigureCourse();
+        mb.ConfigureEnrollment();
+        mb.ConfigureInstructedCourse();
+        mb.ConfigureInstructor();
+        mb.ConfigurePerson();
 
-        modelBuilder
-            .Entity<Course>()
-            .HasKey(c => new { c.CourseNumber, c.DepartmentName });
-
-        modelBuilder
-            .Entity<Enrollment>()
-            .HasKey(x => new { x.CourseId, x.StudentId, x.Grade });
-
-        #endregion
-        #region Composite Foreign Keys
-
-        modelBuilder
-            .Entity<InstructedCourse>()
-            .HasOne(x => x.Course)
-            .WithMany(x => x.Instructions)
-            .HasForeignKey(x => new { x.CourseNumber, x.DepartmentName });
-
-        #endregion
-        #region One → Many
-
-        modelBuilder
-            .Entity<Course>()
-            .HasOne(x => x.Department)
-            .WithMany(x => x.Courses)
-            .HasForeignKey(x => x.DepartmentName)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<Enrollment>()
-            .HasOne(x => x.Course)
-            .WithMany(x => x.EnrolledStudents)
-            .HasForeignKey(x => x.CourseId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<InstructedCourse>()
-            .HasOne(x => x.Instructor)
-            .WithMany(x => x.Courses)
-            .HasForeignKey(x => x.InstructorId);
-
-        modelBuilder
-            .Entity<Instructor>()
-            .HasOne(x => x.Department)
-            .WithMany(x => x.Instructors)
-            .HasForeignKey(x => x.DepartmentName)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<Person>()
-            .HasOne(x => x.FirstNameNav)
-            .WithMany(x => x.FirstNames)
-            .HasForeignKey(x => x.FirstName)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<Person>()
-            .HasOne(x => x.MiddleNameNav)
-            .WithMany(x => x.MiddleNames)
-            .HasForeignKey(x => x.MiddleName)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        modelBuilder
-            .Entity<Person>()
-            .HasOne(x => x.LastNameNav)
-            .WithMany(x => x.LastNames)
-            .HasForeignKey(x => x.LastName)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        #endregion
-        #region Discriminators
-
-        modelBuilder
-            .Entity<Person>()
-            .HasDiscriminator(person => person.Type)
-            .HasValue<Student>("student")
-            .HasValue<Instructor>("instructor");
-
-        #endregion
-
-        modelBuilder
-            .Model
+        mb.Model
             .GetEntityTypes()
             .Where(x => x.BaseType == null)
             .ToList()
             .ForEach(x =>
             {
-                modelBuilder
-                    .Entity(x.Name)
+                mb.Entity(x.Name)
                     .ToTable(x.Name.Split('.').Last());
             });
     }
