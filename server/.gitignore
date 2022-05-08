@@ -2,4 +2,4 @@
 **/obj
 
 # dependencies
-**/nuget-packages
+nuget-packages
