@@ -56,9 +56,6 @@ public static class CourseExtensions
         if (string.IsNullOrEmpty(c.DepartmentName))
             throw new AppException("Course must have a Department Name");
 
-        if (c.Credits < 5)
-            throw new AppException("Course must have Credits assigned to it");
-
         return true;
     }
 }

@@ -1,2 +1,5 @@
 **/bin
 **/obj
+
+# dependencies
+/node_modules
