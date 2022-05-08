@@ -29,7 +29,7 @@ public static class PersonConfig
             .OnDelete(DeleteBehavior.Restrict);
 
         #endregion
-                #region Discriminators
+        #region Discriminators
 
         mb.Entity<Person>()
             .HasDiscriminator(person => person.Type)
