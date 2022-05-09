@@ -19,8 +19,8 @@ namespace COmplexDataModel.Web.Controllers
         [HttpGet("[action]")]
         public async Task<List<Enrollment>> GetEnrollments() => await db.GetEnrollments();
 
-        [HttpPost("[action]")]
-        public async Task<Enrollment> GetEnrollment([FromBody] EnrollmentId id) => await db.GetEnrollment(id);
+        [HttpGet("[action]/{id}")]
+        public async Task<Enrollment> GetEnrollment([FromBody] int id) => await db.GetEnrollment(id);
 
         [HttpPost("[action]")]
         public async Task SaveEnrollment([FromBody] Enrollment e) => await db.SaveEnrollment(e);
