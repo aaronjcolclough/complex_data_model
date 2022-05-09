@@ -23,8 +23,8 @@ namespace COmplexDataModel.Web.Controllers
         public async Task<List<Course>> GetDepartmentCourses([FromRoute] int id) =>
             await db.GetDepartmentCourses(id);
 
-        [HttpPost("[action]")]
-        public async Task<Course> GetCourse([FromBody] int id) => await db.GetCourse(id);
+        [HttpGet("[action]")]
+        public async Task<Course> GetCourse([FromRoute] int id) => await db.GetCourse(id);
 
         [HttpPost("[action]")]
         public async Task SaveCourse([FromBody] Course c) => await db.SaveCourse(c);

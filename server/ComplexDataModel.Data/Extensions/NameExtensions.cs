@@ -7,14 +7,14 @@ public static class NameExtensions
 {
     #region GivenName
 
-    public static async Task<GivenName> GetGivenName(this AppDbContext db, string name) =>
-        await db.GivenNames.FindAsync(name);
+    public static async Task<GivenName> GetGivenName(this AppDbContext db, int id) =>
+        await db.GivenNames.FindAsync(id);
 
     public static async Task SaveGivenName(this AppDbContext db, GivenName gn)
     {
         if (gn.Validate())
         {
-            if (db.GivenNames.Any(x => x.Value == gn.Value))
+            if (gn.Id > 0)
             {
                 await db.UpdateGivenName(gn);
                 await db.SaveChangesAsync();
@@ -53,14 +53,14 @@ public static class NameExtensions
     #endregion
     #region Surname
 
-    public static async Task<Surname> GetSurname(this AppDbContext db, string name) =>
-        await db.Surnames.FindAsync(name);
+    public static async Task<Surname> GetSurname(this AppDbContext db, int id) =>
+        await db.Surnames.FindAsync(id);
 
     public static async Task SaveSurname(this AppDbContext db, Surname sn)
     {
         if (sn.Validate())
         {
-            if (db.Surnames.Any(x => x.Value == sn.Value))
+            if (sn.Id > 0)
             {
                 await db.UpdateSurname(sn);
                 await db.SaveChangesAsync();

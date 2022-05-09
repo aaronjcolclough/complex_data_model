@@ -1,0 +1,34 @@
+ContextDetails
+
+User: ehowell
+Local IP: ::1
+Local Port: 5000
+Remote IP: ::1
+Remote Port: 58578
+Content Type: application/json
+URL: http://localhost:5000/api/Name/SaveGivenName
+
+Headers
+Accept : */*
+Connection : keep-alive
+Host : localhost:5000
+User-Agent : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32
+Accept-Encoding : gzip, deflate, br
+Accept-Language : en-US,en;q=0.9
+Content-Type : application/json
+Cookie : .AspNetCore.Cookies=CfDJ8ErJ505WnnBCtF4Ok1FJKfU0rEqKVtEeX3hl3vPRaeMLR4yxODI1lTttzR6YNQCqqPOb3De2tcSTs56GLP2kZzKRsrhbOa-yALseQquE67sy3-65VspI22AzThwfSAt6PLO6nE93zmhncbNVAc-C2W9yBqtIep-TH117WgV0wIwqIYXC2VMAlQGktjWyVUYSgRQ1p8vZAC3D3MBVBkpUS91DDFsgfg_0r4HL9tDT9Ok7hZtcaDqxJJpFNjcxE2Bpl8YydnK9vSYbHbGjtGeBYJMCaQoulZKwOhf3C6mHuw5jTbd0r_vFUMNSpq1JmkAVoJ0iUzbpevhtS65uhy-BbT2BywpUVMVy9HQwRyKPh_lAmAPsu_MT3jl_cMZFtdK7JVQzFTA6Lr8hOayFUml0GpcNX5xa1D7YI1h-xjlOEVFFwMnUVjCwG1w8Vk4pGMieI6Zefd_We0U4BCZwmtcHo3M
+Origin : http://localhost:5000
+Referer : http://localhost:5000/swagger/index.html
+Content-Length : 15
+sec-ch-ua : " Not A;Brand";v="99", "Chromium";v="101", "Microsoft Edge";v="101"
+sec-ch-ua-mobile : ?0
+sec-ch-ua-platform : "Windows"
+Sec-Fetch-Site : same-origin
+Sec-Fetch-Mode : cors
+Sec-Fetch-Dest : empty
+
+Exception Details
+An error occurred while saving the entity changes. See the inner exception for details.
+Cannot insert duplicate key row in object 'dbo.GivenName' with unique index 'IX_GivenName_Value'. The duplicate key value is (Tom).
+The statement has been terminated.
+

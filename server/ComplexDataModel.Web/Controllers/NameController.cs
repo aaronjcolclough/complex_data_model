@@ -18,8 +18,8 @@ namespace COmplexDataModel.Web.Controllers
 
         #region GivenName
 
-        [HttpPost("[action]/{name}")]
-        public async Task<GivenName> GetGivenName([FromBody] string name) => await db.GetGivenName(name);
+        [HttpGet("[action]/{id}")]
+        public async Task<GivenName> GetGivenName([FromRoute] int id) => await db.GetGivenName(id);
 
         [HttpPost("[action]")]
         public async Task SaveGivenName([FromBody] GivenName gn) => await db.SaveGivenName(gn);
@@ -30,8 +30,8 @@ namespace COmplexDataModel.Web.Controllers
         #endregion
         #region Surname
 
-        [HttpPost("[action]")]
-        public async Task<Surname> GetSurname([FromBody] string name) => await db.GetSurname(name);
+        [HttpGet("[action]/{id}")]
+        public async Task<Surname> GetSurname([FromRoute] int id) => await db.GetSurname(id);
 
         [HttpPost("[action]")]
         public async Task SaveSurname([FromBody] Surname s) => await db.SaveSurname(s);

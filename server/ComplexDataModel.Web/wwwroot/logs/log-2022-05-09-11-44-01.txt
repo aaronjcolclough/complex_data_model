@@ -1,0 +1,31 @@
+ContextDetails
+
+User: ehowell
+Local IP: ::1
+Local Port: 5000
+Remote IP: ::1
+Remote Port: 58578
+Content Type: application/json;odata.metadata=minimal;odata.streaming=true
+URL: http://localhost:5000/api/Name/SaveGivenName
+
+Headers
+Accept : */*
+Connection : keep-alive
+Host : localhost:5000
+User-Agent : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.41 Safari/537.36 Edg/101.0.1210.32
+Accept-Encoding : gzip, deflate, br
+Accept-Language : en-US,en;q=0.9
+Content-Type : application/json;odata.metadata=minimal;odata.streaming=true
+Cookie : .AspNetCore.Cookies=CfDJ8ErJ505WnnBCtF4Ok1FJKfWeD1zpA9ZQtP99CJ9rUQqw9dfHxpA6MGWli6-0XZhSBu_agjH3zmiT03fPOg4uhL9kmuKAn_Tm90cHNSYawn_5gt-8ll6S0vyJZXNZfgVo1pQDFsJj8OcPLCSPOMtpf00ffHzRgJYhpy0OJXIpbUTTeaAOITQAj2Bm3cEUm9srEvzGDT1Gne_Gttze8Y8tL34TOM6LxzslXMZqr_1qcEHOT8QhXnJW36F9ftOsW6DCm2aG42ix02P9SEZcQUbNhD_CWKhjis7p51guJkNqm8J2DttxDxFUSTP35RSsHUeCJhnuz7HFr8T-tT82YKQTtiTJmZJN5ZCd2j9J8GCO0oxw1P3xYHQH0JyaSahnps9wVM6DdhdITAspx1bIs2iLA7b5wOEjiPYErWiJn-_QgYvTEoZpOmBB-mBJd2fg1AlKIsleSTR0OY61M0XpdnDpsUw
+Origin : http://localhost:5000
+Referer : http://localhost:5000/swagger/index.html
+Content-Length : 314
+sec-ch-ua : " Not A;Brand";v="99", "Chromium";v="101", "Microsoft Edge";v="101"
+sec-ch-ua-mobile : ?0
+sec-ch-ua-platform : "Windows"
+Sec-Fetch-Site : same-origin
+Sec-Fetch-Mode : cors
+Sec-Fetch-Dest : empty
+
+Exception Details
+Value cannot be null. (Parameter 'key')

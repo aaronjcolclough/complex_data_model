@@ -20,7 +20,7 @@ namespace COmplexDataModel.Web.Controllers
         public async Task<List<Department>> GetDepartments() => await db.GetDepartments();
 
         [HttpGet("[action]/{id}")]
-        public async Task<Department> GetDepartment([FromRoute] string name) => await db.GetDepartment(name);
+        public async Task<Department> GetDepartment([FromRoute] int id) => await db.GetDepartment(id);
 
         [HttpPost("[action]")]
         public async Task SaveDepartment([FromBody] Department d) => await db.SaveDepartment(d);
