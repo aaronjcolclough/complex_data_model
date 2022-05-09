@@ -1,11 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace ComplexDataModel.Data.Entities;
 
+[Index(nameof(Name), IsUnique = true)]
 public class Department
 {
-    [Key]
+    public int Id { get; set; }
     public string Name { get; set; }
 
     [DataType(DataType.Currency)]

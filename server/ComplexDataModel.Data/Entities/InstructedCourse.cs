@@ -5,9 +5,8 @@ namespace ComplexDataModel.Data.Entities;
 public class InstructedCourse
 {
     public int Id { get; set; }
+    public int CourseId { get; set; }
     public int InstructorId { get; set; }
-    public string CourseNumber { get; set; }
-    public string DepartmentName { get; set; }
 
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]

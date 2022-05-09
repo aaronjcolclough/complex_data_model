@@ -10,8 +10,8 @@ public static class EnrollmentExtensions
     public static async Task<List<Enrollment>> GetEnrollments(this AppDbContext db) =>
         await db.Enrollments.ToListAsync();
 
-    public static async Task<Enrollment> GetEnrollment(this AppDbContext db, EnrollmentId id) =>
-        await db.Enrollments.FindAsync(id.CourseId, id.StudentId);
+    public static async Task<Enrollment> GetEnrollment(this AppDbContext db, int id) =>
+        await db.Enrollments.FindAsync(id);
 
     public static async Task SaveEnrollment(this AppDbContext db, Enrollment e)
     {

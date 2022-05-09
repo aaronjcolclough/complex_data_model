@@ -8,20 +8,20 @@ public static class CourseConfig
 {
   public static void ConfigureCourse(this ModelBuilder mb)
   {
-        #region Composite Primary Keys
+        // #region Composite Primary Keys
 
-        mb.Entity<Course>()
-            .HasKey(c => new { c.CourseNumber, c.DepartmentName });
+        // mb.Entity<Course>()
+        //     .HasKey(c => new { c.CourseNumber, c.DepartmentName });
 
-        #endregion
-        #region One → Many
+        // #endregion
+        // #region One → Many
 
-        mb.Entity<Course>()
-            .HasOne(x => x.Department)
-            .WithMany(x => x.Courses)
-            .HasForeignKey(x => x.DepartmentName)
-            .OnDelete(DeleteBehavior.Restrict);
+        // mb.Entity<Course>()
+        //     .HasOne(x => x.Department)
+        //     .WithMany(x => x.Courses)
+        //     .HasForeignKey(x => x.DepartmentName)
+        //     .OnDelete(DeleteBehavior.Restrict);
 
-        #endregion
+        // #endregion
   }
 }

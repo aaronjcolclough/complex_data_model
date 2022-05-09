@@ -20,51 +20,44 @@ public static class InstructedCourseSeed
             {
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Harui").Id,
-                    CourseNumber = "1050",
-                    DepartmentName = "Engineering",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Harui").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "1050").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Zheng").Id,
-                    CourseNumber = "4022",
-                    DepartmentName = "Economics",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Zheng").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "4022").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Kapoor").Id,
-                    CourseNumber = "4041",
-                    DepartmentName = "Economics",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Kapoor").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "4041").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Fakhouri").Id,
-                    CourseNumber = "1045",
-                    DepartmentName = "Mathematics",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Fakhouri").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "1045").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Fakhouri").Id,
-                    CourseNumber = "3141",
-                    DepartmentName = "Mathematics",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Fakhouri").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "3141").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Abercrombie").Id,
-                    CourseNumber = "2021",
-                    DepartmentName = "English",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Abercrombie").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "2021").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
                 new InstructedCourse
                 {
-                    InstructorId = instructors.Single(x => x.LastName == "Abercrombie").Id,
-                    CourseNumber = "2042",
-                    DepartmentName = "English",
+                    InstructorId = instructors.Single(x => x.LastName.Value == "Abercrombie").Id,
+                    CourseId = courses.Single(x => x.CourseNumber == "2042").Id,
                     StartDate = DateTime.Parse("2007-09-01"),
                 },
             };

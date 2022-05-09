@@ -11,21 +11,21 @@ public static class PersonConfig
         #region One → Many
 
         mb.Entity<Person>()
-            .HasOne(x => x.FirstNameNav)
+            .HasOne(x => x.FirstName)
             .WithMany(x => x.FirstNames)
-            .HasForeignKey(x => x.FirstName)
+            .HasForeignKey(x => x.FirstNameId)
             .OnDelete(DeleteBehavior.Restrict);
 
         mb.Entity<Person>()
-            .HasOne(x => x.MiddleNameNav)
+            .HasOne(x => x.MiddleName)
             .WithMany(x => x.MiddleNames)
-            .HasForeignKey(x => x.MiddleName)
+            .HasForeignKey(x => x.MiddleNameId)
             .OnDelete(DeleteBehavior.Restrict);
 
         mb.Entity<Person>()
-            .HasOne(x => x.LastNameNav)
+            .HasOne(x => x.LastName)
             .WithMany(x => x.LastNames)
-            .HasForeignKey(x => x.LastName)
+            .HasForeignKey(x => x.LastNameId)
             .OnDelete(DeleteBehavior.Restrict);
 
         #endregion

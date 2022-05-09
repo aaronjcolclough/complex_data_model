@@ -23,50 +23,50 @@ public static class StudentSeed
             {
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Carson").Value,
-                        LastName = surnames.Single(x => x.Value == "Alexander").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Carson").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Alexander").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2010-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Meredith").Value,
-                        LastName = surnames.Single(x => x.Value == "Alonso").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Meredith").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Alonso").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2012-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Arturo").Value,
-                        LastName = surnames.Single(x => x.Value == "Anand").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Arturo").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Anand").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2013-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Gytis").Value,
-                        LastName = surnames.Single(x => x.Value == "Barzdukas").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Gytis").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Barzdukas").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2012-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Yan").Value,
-                        LastName = surnames.Single(x => x.Value == "Li").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Yan").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Li").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2012-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Peggy").Value,
-                        LastName = surnames.Single(x => x.Value == "Justice").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Peggy").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Justice").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2011-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Laura").Value,
-                        LastName = surnames.Single(x => x.Value == "Norman").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Laura").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Norman").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2013-09-01"),
                     },
                 new Student
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Nino").Value,
-                        LastName = surnames.Single(x => x.Value == "Olivetto").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Nino").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Olivetto").Id,
                         SchoolEnrollmentDate = DateTime.Parse("2005-09-01")
                     }
            };

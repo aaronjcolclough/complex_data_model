@@ -20,68 +20,68 @@ public static class EnrollmentSeed
             {
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Alexander").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "1050").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Alexander").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "1050").Id,
                     Grade = Grade.A
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Alexander").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "4022").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Alexander").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "4022").Id,
                     Grade = Grade.C
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Alexander").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "4041").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Alexander").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "4041").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Alonso").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "1045").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Alonso").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "1045").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Alonso").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "3141").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Alonso").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "3141").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Alonso").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "2021").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Alonso").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "2021").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Anand").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "1050").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Anand").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "1050").Id,
                     Grade = Grade.I
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Anand").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "4022").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Anand").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "4022").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Barzdukas").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "1050").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Barzdukas").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "1050").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Li").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "2021").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Li").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "2021").Id,
                     Grade = Grade.B
                 },
                 new Enrollment
                 {
-                    StudentId = students.Single(x => x.LastName == "Justice").Id,
-                    CourseId = courses.Single(x => x.CourseNumber == "2042").Id,
+                    StudentId = students.Single(x => x.LastName.Value == "Justice").Id,
+                    CourseId = courses.Single(x => x.Course.CourseNumber == "2042").Id,
                     Grade = Grade.B
                 }
             };

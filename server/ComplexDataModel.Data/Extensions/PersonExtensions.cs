@@ -41,10 +41,10 @@ public static class PersonExtensions
 
     static void ClearNavProps<T>(this T p) where T : Person
     {
-        p.FirstNameNav = null;
-        p.MiddleNameNav = null;
-        p.LastNameNav = null;
-        
+        // p.FirstNameNav = null;
+        // p.MiddleNameNav = null;
+        // p.LastNameNav = null;
+
         switch (p)
         {
             case Instructor i:
@@ -62,10 +62,10 @@ public static class PersonExtensions
 
     static bool Validate<T>(this T p) where T : Person
     {
-        if (string.IsNullOrEmpty(p.FirstName))
+        if (string.IsNullOrEmpty(p.FirstName.Value))
             throw new AppException("Person must have a first name");
 
-        if (string.IsNullOrEmpty(p.LastName))
+        if (string.IsNullOrEmpty(p.LastName.Value))
             throw new AppException("Person must have a last name");
 
         switch (p)
@@ -79,7 +79,7 @@ public static class PersonExtensions
 
     static bool ValidateInstructor(this Instructor i)
     {
-        if (string.IsNullOrEmpty(i.DepartmentName))
+        if (i.DepartmentId > 0)
             throw new AppException("Instructor must have a Department");
 
         return true;

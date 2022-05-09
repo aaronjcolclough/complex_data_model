@@ -20,19 +20,19 @@ public static class OfficeSeed
             {
                 new Office
                 {
-                    InstructorId = instructors.Single( i => i.LastName == "Fakhouri").Id,
+                    InstructorId = instructors.Single( i => i.LastName.Value == "Fakhouri").Id,
                     Room = "17",
                     Building = "Smith"
                 },
                 new Office
                 {
-                    InstructorId = instructors.Single( i => i.LastName == "Harui").Id,
+                    InstructorId = instructors.Single( i => i.LastName.Value == "Harui").Id,
                     Room = "27",
                     Building = "Gowan"
                 },
                 new Office
                 {
-                    InstructorId = instructors.Single( i => i.LastName == "Kapoor").Id,
+                    InstructorId = instructors.Single( i => i.LastName.Value == "Kapoor").Id,
                     Room = "304",
                     Building = "Thompson"
                 },

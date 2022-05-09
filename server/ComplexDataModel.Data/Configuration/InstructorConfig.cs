@@ -8,14 +8,14 @@ public static class InstructorConfig
 {
   public static void ConfigureInstructor(this ModelBuilder mb)
   {
-        #region One → Many
+        // #region One → Many
 
-        mb.Entity<Instructor>()
-            .HasOne(x => x.Department)
-            .WithMany(x => x.Instructors)
-            .HasForeignKey(x => x.DepartmentName)
-            .OnDelete(DeleteBehavior.Restrict);
+        // mb.Entity<Instructor>()
+        //     .HasOne(x => x.Department)
+        //     .WithMany(x => x.Instructors)
+        //     .HasForeignKey(x => x.DepartmentName)
+        //     .OnDelete(DeleteBehavior.Restrict);
 
-        #endregion
+        // #endregion
   }
 }

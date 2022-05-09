@@ -10,19 +10,19 @@ public static class CourseExtensions
     public static async Task<List<Course>> GetAllCourses(this AppDbContext db) =>
         await db.Courses.ToListAsync();
 
-    public static async Task<List<Course>> GetDepartmentCourses(this AppDbContext db, string dName) =>
+    public static async Task<List<Course>> GetDepartmentCourses(this AppDbContext db, int id) =>
         await db.Courses
-            .Where(x => x.DepartmentName == dName)
+            .Where(x => x.DepartmentId == id)
             .ToListAsync();
 
-    public static async Task<Course> GetCourse(this AppDbContext db, CourseId id) =>
-        await db.Courses.FindAsync(id.CourseNumber, id.DepartmentName);
+    public static async Task<Course> GetCourse(this AppDbContext db, int id) =>
+        await db.Courses.FindAsync(id);
 
     public static async Task SaveCourse(this AppDbContext db, Course c)
     {
         if (c.Validate())
         {
-            if (db.Courses.Any(x => x.CourseNumber == c.CourseNumber && x.DepartmentName == c.DepartmentName))
+            if (c.Id > 0)
             {
                 await db.UpdateCourse(c);
                 await db.SaveChangesAsync();
@@ -58,7 +58,7 @@ public static class CourseExtensions
         if (string.IsNullOrEmpty(c.CourseNumber))
             throw new AppException("Course must have a Course Number");
 
-        if (string.IsNullOrEmpty(c.DepartmentName))
+        if (c.DepartmentId > 0)
             throw new AppException("Course must have a Department Name");
 
         return true;

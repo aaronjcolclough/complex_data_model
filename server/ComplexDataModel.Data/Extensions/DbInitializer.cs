@@ -12,11 +12,11 @@ public static class DbInitializer
         await db.Database.MigrateAsync();
         Console.WriteLine("Database initialized");
 
-        await db.SeedDepartments();
-        var courses = await db.SeedCourses();
+        var departments = await db.SeedDepartments();
+        var courses = await db.SeedCourses(departments);
         var (givenNames, surnames) = await db.SeedNames();
         var students = await db.SeedStudents((givenNames, surnames));
-        var instructors = await db.SeedInstructors((givenNames, surnames));
+        var instructors = await db.SeedInstructors((givenNames, surnames), departments);
         await db.SeedOffices(instructors);
         var instructedCourses = await db.SeedInstructedCourses(instructors, courses);
         await db.SeedEnrollments(instructedCourses, students);

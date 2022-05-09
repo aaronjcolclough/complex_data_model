@@ -7,7 +7,7 @@ namespace ComplexDataModel.Data.Extensions.Seed;
 
 public static class InstructorSeed
 {
-    public static async Task<List<Instructor>> SeedInstructors(this AppDbContext db, (List<GivenName>, List<Surname>) names)
+    public static async Task<List<Instructor>> SeedInstructors(this AppDbContext db, (List<GivenName>, List<Surname>) names, List<Department> departments)
     {
         var (givenNames, surnames) = names;
 
@@ -23,38 +23,38 @@ public static class InstructorSeed
             {
                 new Instructor
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Kim").Value,
-                        LastName = surnames.Single(x => x.Value == "Abercrombie").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Kim").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Abercrombie").Id,
                         HireDate = DateTime.Parse("2007-09-01"),
-                        DepartmentName = "English"
+                        DepartmentId = departments.Single(x => x.Name == "English").Id
                     },
                 new Instructor
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Fadi").Value,
-                        LastName = surnames.Single(x => x.Value == "Fakhouri").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Fadi").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Fakhouri").Id,
                         HireDate = DateTime.Parse("2007-09-01"),
-                        DepartmentName = "Mathematics"
+                        DepartmentId = departments.Single(x => x.Name == "Mathematics").Id
                     },
                 new Instructor
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Roger").Value,
-                        LastName = surnames.Single(x => x.Value == "Harui").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Roger").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Harui").Id,
                         HireDate = DateTime.Parse("2007-09-01"),
-                        DepartmentName = "Engineering"
+                        DepartmentId = departments.Single(x => x.Name == "Engineering").Id
                     },
                 new Instructor
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Candace").Value,
-                        LastName = surnames.Single(x => x.Value == "Kapoor").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Candace").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Kapoor").Id,
                         HireDate = DateTime.Parse("2007-09-01"),
-                        DepartmentName = "Economics"
+                        DepartmentId = departments.Single(x => x.Name == "Economics").Id
                     },
                 new Instructor
                     {
-                        FirstName = givenNames.Single(x => x.Value == "Roger").Value,
-                        LastName = surnames.Single(x => x.Value == "Zheng").Value,
+                        FirstNameId = givenNames.Single(x => x.Value == "Roger").Id,
+                        LastNameId = surnames.Single(x => x.Value == "Zheng").Id,
                         HireDate = DateTime.Parse("2012-09-01"),
-                        DepartmentName = "Economics"
+                        DepartmentId = departments.Single(x => x.Name == "Economics").Id
                     },
             };
 

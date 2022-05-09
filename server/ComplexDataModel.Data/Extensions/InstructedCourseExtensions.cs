@@ -43,7 +43,7 @@ public static class InstructedCourseExtensions
     {
         ic.Course = null;
         ic.Instructor = null;
-        
+
         ic.EnrolledStudents = null;
     }
 
@@ -52,7 +52,7 @@ public static class InstructedCourseExtensions
         if (ic.InstructorId < 1)
             throw new AppException("Instructed Course must have an Instructor");
 
-        if (string.IsNullOrEmpty(ic.CourseNumber) && string.IsNullOrEmpty(ic.DepartmentName))
+        if (ic.CourseId > 0)
             throw new AppException("Instructed Course must be associated to a Course");
 
         return true;

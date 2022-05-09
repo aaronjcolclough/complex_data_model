@@ -6,14 +6,14 @@ namespace ComplexDataModel.Data.Entities;
 public class Person
 {
     public int Id { get; set; }
-    public string FirstName { get; set;}
-    public string MiddleName { get; set;} = "NMN";
-    public string LastName { get; set;}
+    public int FirstNameId { get; set;}
+    public int? MiddleNameId { get; set;}
+    public int LastNameId { get; set;}
     public string Type { get; set;}
 
-    public GivenName FirstNameNav { get; set; }
-    public GivenName MiddleNameNav { get; set; }
-    public Surname LastNameNav { get; set; }
+    public GivenName FirstName { get; set; }
+    public GivenName MiddleName { get; set; }
+    public Surname LastName { get; set; }
 }
 
 public class Student : Person
@@ -27,7 +27,7 @@ public class Student : Person
 
 public class Instructor : Person
 {
-    public string DepartmentName{ get; set; }
+    public int DepartmentId { get; set; }
 
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]

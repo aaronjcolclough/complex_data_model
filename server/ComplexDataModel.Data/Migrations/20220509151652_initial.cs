@@ -13,54 +13,62 @@ namespace ComplexDataModel.Data.Migrations
                 name: "Department",
                 columns: table => new
                 {
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Budget = table.Column<decimal>(type: "money", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Department", x => x.Name);
+                    table.PrimaryKey("PK_Department", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "GivenName",
                 columns: table => new
                 {
-                    Value = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GivenName", x => x.Value);
+                    table.PrimaryKey("PK_GivenName", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Surname",
                 columns: table => new
                 {
-                    Value = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Value = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Surname", x => x.Value);
+                    table.PrimaryKey("PK_Surname", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Course",
                 columns: table => new
                 {
-                    CourseNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DepartmentName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DepartmentId = table.Column<int>(type: "int", nullable: false),
+                    CourseNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Credits = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => new { x.CourseNumber, x.DepartmentName });
+                    table.PrimaryKey("PK_Course", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Course_Department_DepartmentName",
-                        column: x => x.DepartmentName,
+                        name: "FK_Course_Department_DepartmentId",
+                        column: x => x.DepartmentId,
                         principalTable: "Department",
-                        principalColumn: "Name",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -69,11 +77,11 @@ namespace ComplexDataModel.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    FirstNameId = table.Column<int>(type: "int", nullable: false),
+                    MiddleNameId = table.Column<int>(type: "int", nullable: true),
+                    LastNameId = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DepartmentName = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    DepartmentId = table.Column<int>(type: "int", nullable: true),
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SchoolEnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -81,28 +89,28 @@ namespace ComplexDataModel.Data.Migrations
                 {
                     table.PrimaryKey("PK_Person", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Person_Department_DepartmentName",
-                        column: x => x.DepartmentName,
+                        name: "FK_Person_Department_DepartmentId",
+                        column: x => x.DepartmentId,
                         principalTable: "Department",
-                        principalColumn: "Name",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Person_GivenName_FirstName",
-                        column: x => x.FirstName,
+                        name: "FK_Person_GivenName_FirstNameId",
+                        column: x => x.FirstNameId,
                         principalTable: "GivenName",
-                        principalColumn: "Value",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Person_GivenName_MiddleName",
-                        column: x => x.MiddleName,
+                        name: "FK_Person_GivenName_MiddleNameId",
+                        column: x => x.MiddleNameId,
                         principalTable: "GivenName",
-                        principalColumn: "Value",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Person_Surname_LastName",
-                        column: x => x.LastName,
+                        name: "FK_Person_Surname_LastNameId",
+                        column: x => x.LastNameId,
                         principalTable: "Surname",
-                        principalColumn: "Value",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -112,25 +120,25 @@ namespace ComplexDataModel.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
                     InstructorId = table.Column<int>(type: "int", nullable: false),
-                    CourseNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    DepartmentName = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InstructedCourse", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InstructedCourse_Course_CourseNumber_DepartmentName",
-                        columns: x => new { x.CourseNumber, x.DepartmentName },
+                        name: "FK_InstructedCourse_Course_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "Course",
-                        principalColumns: new[] { "CourseNumber", "DepartmentName" });
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_InstructedCourse_Person_InstructorId",
                         column: x => x.InstructorId,
                         principalTable: "Person",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,9 +186,23 @@ namespace ComplexDataModel.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_DepartmentName",
+                name: "IX_Course_CourseNumber_DepartmentId",
                 table: "Course",
-                column: "DepartmentName");
+                columns: new[] { "CourseNumber", "DepartmentId" },
+                unique: true,
+                filter: "[CourseNumber] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Course_DepartmentId",
+                table: "Course",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Department_Name",
+                table: "Department",
+                column: "Name",
+                unique: true,
+                filter: "[Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Enrollment_StudentId",
@@ -188,9 +210,16 @@ namespace ComplexDataModel.Data.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstructedCourse_CourseNumber_DepartmentName",
+                name: "IX_GivenName_Value",
+                table: "GivenName",
+                column: "Value",
+                unique: true,
+                filter: "[Value] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InstructedCourse_CourseId",
                 table: "InstructedCourse",
-                columns: new[] { "CourseNumber", "DepartmentName" });
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InstructedCourse_InstructorId",
@@ -198,24 +227,31 @@ namespace ComplexDataModel.Data.Migrations
                 column: "InstructorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_DepartmentName",
+                name: "IX_Person_DepartmentId",
                 table: "Person",
-                column: "DepartmentName");
+                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_FirstName",
+                name: "IX_Person_FirstNameId",
                 table: "Person",
-                column: "FirstName");
+                column: "FirstNameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_LastName",
+                name: "IX_Person_LastNameId",
                 table: "Person",
-                column: "LastName");
+                column: "LastNameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_MiddleName",
+                name: "IX_Person_MiddleNameId",
                 table: "Person",
-                column: "MiddleName");
+                column: "MiddleNameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Surname_Value",
+                table: "Surname",
+                column: "Value",
+                unique: true,
+                filter: "[Value] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
