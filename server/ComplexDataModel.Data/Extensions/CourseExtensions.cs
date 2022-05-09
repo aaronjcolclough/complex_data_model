@@ -7,8 +7,13 @@ namespace ComplexDataModel.Data.Extensions;
 
 public static class CourseExtensions
 {
-    public static async Task<List<Course>> GetCourses(this AppDbContext db) =>
+    public static async Task<List<Course>> GetAllCourses(this AppDbContext db) =>
         await db.Courses.ToListAsync();
+
+    public static async Task<List<Course>> GetDepartmentCourses(this AppDbContext db, string dName) =>
+        await db.Courses
+            .Where(x => x.DepartmentName == dName)
+            .ToListAsync();
 
     public static async Task<Course> GetCourse(this AppDbContext db, CourseId id) =>
         await db.Courses.FindAsync(id.CourseNumber, id.DepartmentName);

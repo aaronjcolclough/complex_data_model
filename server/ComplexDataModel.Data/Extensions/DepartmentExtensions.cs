@@ -10,8 +10,8 @@ public static class DepartmentExtensions
     public static async Task<List<Department>> GetDepartments(this AppDbContext db) =>
         await db.Departments.ToListAsync();
 
-    public static async Task<Department> GetDepartment(this AppDbContext db, int id) =>
-        await db.Departments.FindAsync(id);
+    public static async Task<Department> GetDepartment(this AppDbContext db, string name) =>
+        await db.Departments.FindAsync(name);
 
     public static async Task SaveDepartment(this AppDbContext db, Department d)
     {

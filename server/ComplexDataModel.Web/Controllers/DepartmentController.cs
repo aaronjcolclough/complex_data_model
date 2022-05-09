@@ -1,0 +1,31 @@
+using Microsoft.AspNetCore.Mvc;
+
+using ComplexDataModel.Data;
+using ComplexDataModel.Data.Entities;
+using ComplexDataModel.Data.Extensions;
+
+namespace COmplexDataModel.Web.Controllers
+{
+    [Route("api/[controller]")]
+    public class DepartmentController : Controller
+    {
+        private readonly AppDbContext db;
+
+        public DepartmentController(AppDbContext db)
+        {
+            this.db = db;
+        }
+
+        [HttpGet("[action]")]
+        public async Task<List<Department>> GetDepartments() => await db.GetDepartments();
+
+        [HttpGet("[action]/{id}")]
+        public async Task<Department> GetDepartment([FromRoute] string name) => await db.GetDepartment(name);
+
+        [HttpPost("[action]")]
+        public async Task SaveDepartment([FromBody] Department d) => await db.SaveDepartment(d);
+
+        [HttpPost("[action]")]
+        public async Task RemoveDepartment([FromBody] Department d) => await db.RemoveDepartment(d);
+    }
+}
