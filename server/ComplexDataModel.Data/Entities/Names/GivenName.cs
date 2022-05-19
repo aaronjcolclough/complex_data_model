@@ -4,12 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ComplexDataModel.Data.Entities.Names;
 
-[Index(nameof(Value), IsUnique = true)]
-public class GivenName
+public class GivenName : LookupEntity
 {
-    public int Id { get; set; }
-    public string Value { get; set; }
-
     public IEnumerable<Person> FirstNames { get; set; }
     public IEnumerable<Person> MiddleNames { get; set; }
 }

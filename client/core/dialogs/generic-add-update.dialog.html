@@ -1,0 +1,18 @@
+<div class="mat-typography">
+  <h2 mat-dialog-title>{{data?.entity?.name}}</h2>
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Value</mat-label>
+      <input matInput [(ngModel)]="data.entity.self.value">
+    </mat-form-field>
+
+    <!-- <p>{{data?.entity?.self?.value}}</p> -->
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-stroked-button
+            mat-dialog-close>Cancel</button>
+    <button mat-stroked-button
+            class="color-green"
+            (click)="save()">Save</button>
+  </mat-dialog-actions>
+</div>

@@ -6,3 +6,4 @@ export * from'./banner-config';
 export * from './socket-state';
 export * from './storage-state';
 export * from './tab';
+export * from './given-name';

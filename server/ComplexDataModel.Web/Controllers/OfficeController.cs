@@ -4,8 +4,8 @@ using ComplexDataModel.Data;
 using ComplexDataModel.Data.Entities;
 using ComplexDataModel.Data.Extensions;
 
-namespace COmplexDataModel.Web.Controllers
-{
+namespace COmplexDataModel.Web.Controllers;
+
     [Route("api/[controller]")]
     public class OfficeController : Controller
     {
@@ -28,4 +28,3 @@ namespace COmplexDataModel.Web.Controllers
         [HttpPost("[action]")]
         public async Task RemoveOffice([FromBody] Office o) => await db.RemoveOffice(o);
     }
-}

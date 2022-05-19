@@ -4,7 +4,7 @@ using ComplexDataModel.Data;
 using ComplexDataModel.Data.Entities.Names;
 using ComplexDataModel.Data.Extensions;
 
-namespace COmplexDataModel.Web.Controllers
+namespace ComplexDataModel.Web.Controllers
 {
     [Route("api/[controller]")]
     public class NameController : Controller
